@@ -10,12 +10,7 @@ from flask_cors import CORS
 # =================================================
 # FLASK APP + CORS
 # =================================================
-app = Flask(
-    __name__,
-    static_folder="../frontend/dist",
-    static_url_path=""
-)
-
+app = Flask(__name__)
 CORS(app)
 
 # =================================================
@@ -78,9 +73,9 @@ def predict():
     r, g, b = img_np[:, :, 0], img_np[:, :, 1], img_np[:, :, 2]
 
     plt.figure(figsize=(6, 4))
-    plt.plot(r.mean(axis=0), color="red")
-    plt.plot(g.mean(axis=0), color="green")
-    plt.plot(b.mean(axis=0), color="blue")
+    plt.plot(r.mean(axis=0), "r")
+    plt.plot(g.mean(axis=0), "g")
+    plt.plot(b.mean(axis=0), "b")
     plt.title("RGB Color Spread")
     plt.tight_layout()
     plt.savefig(graph_path)
@@ -93,19 +88,9 @@ def predict():
     })
 
 # =================================================
-# SERVE FRONTEND
-# =================================================
-@app.route("/")
-def root():
-    return app.send_static_file("index.html")
-
-@app.errorhandler(404)
-def not_found(e):
-    return app.send_static_file("index.html")
-
-# =================================================
-# RUN
+# RUN SERVER
 # =================================================
 if __name__ == "__main__":
-    print("Backend running at: http://localhost:5000")
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    print(f"Backend running at: http://0.0.0.0:{port}")
+    app.run(host="0.0.0.0", port=port)
