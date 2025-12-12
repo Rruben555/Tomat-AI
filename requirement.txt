@@ -1,6 +1,7 @@
-flask
+Flask
 flask-cors
-tensorflow
-opencv-python
+tensorflow-cpu
+matplotlib
 numpy
 Pillow
+gunicorn
