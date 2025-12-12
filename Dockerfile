@@ -1,17 +1,21 @@
 FROM python:3.11-slim
 
+# Install dependencies including wget & gdown
+RUN apt-get update && apt-get install -y \
+    wget \
+    gcc \
+    g++ \
+    && pip install --no-cache-dir gdown \
+    && apt-get clean
+
 WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy model secara paksa
-COPY model ./model
-
-# Copy semua file lainnya
 COPY . .
 
-RUN chmod +x /app/start.sh
+# Ensure start.sh has execute permissions
+RUN chmod +x start.sh
 
-EXPOSE 5000
 CMD ["./start.sh"]
