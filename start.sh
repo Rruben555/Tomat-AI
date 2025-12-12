@@ -1,17 +1,13 @@
 #!/bin/bash
 
-MODEL_DIR="model"
-MODEL_FILE="model/tomato_model.h5"
-MODEL_URL="https://drive.google.com/file/d/1d50zWVCxGQYEhBEVv9h523JytnrZo6Tx/view?usp=sharing"
+MODEL_PATH="model/tomato_model.h5"
+MODEL_URL="https://drive.google.com/uc?id=1d50zWVCxGQYEhBEVv9h523JytnrZo6Tx"
 
-mkdir -p $MODEL_DIR
-
-# Download model jika belum ada
-if [ ! -f "$MODEL_FILE" ]; then
+if [ ! -f "$MODEL_PATH" ]; then
     echo "Model not found. Downloading..."
-    wget -O "$MODEL_FILE" "$MODEL_URL"
-else
-    echo "Model already exists. Skipping download."
+    mkdir -p model
+    gdown "$MODEL_URL" -O "$MODEL_PATH"
 fi
 
-gunicorn app:app --bind 0.0.0.0:$PORT
+echo "Starting server..."
+exec gunicorn -b 0.0.0.0:8080 app:app
