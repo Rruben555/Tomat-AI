@@ -1,7 +1,7 @@
 #!/bin/bash
 
-MODEL_PATH="model/tomat_model.h5"
-MODEL_URL="https://drive.google.com/uc?id=1d50zWVCxGQYEhBEVv9h523JytnrZo6Tx&export=download"
+MODEL_PATH="model/model7.h5"
+MODEL_URL="https://drive.google.com/uc?id=1rBFOkGG5hRm43NZSXgZRLDraUXsJ6_Ni&export=download"
 
 if [ ! -f "$MODEL_PATH" ]; then
     echo "Model not found. Downloading..."
