@@ -16,7 +16,7 @@ CORS(app)
 # =================================================
 # MODEL
 # =================================================
-MODEL_PATH = "model/moddelnya.h5"
+MODEL_PATH = "model/tomat_model.h5"
 model = load_model(MODEL_PATH)
 
 # =================================================
