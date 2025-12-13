@@ -62,7 +62,7 @@ def predict():
     img_array = np.expand_dims(img_array, axis=0)
 
     preds = model.predict(img_array)
-    classes = ["Mentah", "Setengah Matang", "Matang"]
+    classes = [ "Setengah Matang", "Mentah", "Matang"]
     prediction = classes[np.argmax(preds)]
 
     # Create graph
